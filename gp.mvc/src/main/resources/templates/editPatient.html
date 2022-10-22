@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>From Patient</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.2/css/bootstrap.css">
+</head>
+<body>
+    <div layout:fragment="content1">
+        <div class="container mt-2 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/admin/edit(page=${page}, keyword=${keyword})}" method="post">
+
+                        <div class="mb-3">
+                            <label  class="form-label">Id </label>
+                            <label th:text="${patient.id}"> </label>
+                            <input type="hidden" class="form-control" id="id" name="id" aria-describedby="id" th:value="${patient.id}" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Nom </label>
+                            <input type="text" class="form-control" id="nom" name="nom" aria-describedby="nom" th:value="${patient.nom}">
+                            <span class="text-danger" th:errors="${patient.nom}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateNaissance" class="form-label">Date de naissance</label>
+                            <input type="date" class="form-control" id="dateNaissance" name="dateNaissance" th:value="${patient.dateNaissance}">
+                            <span class="text-danger" th:errors="${patient.dateNaissance}"></span>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="malade" name="malade" th:checked="${patient.malade}">
+                            <label class="form-check-label" for="malade">Malade</label>
+                            <span class="text-danger" th:errors="${patient.malade}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="score" class="form-label">Score</label>
+                            <input type="text" class="form-control" id="score" name="score" th:value="${patient.score}">
+                            <span class="text-danger" th:errors="${patient.score}"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Editer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
